@@ -8,6 +8,8 @@ from async_timeout import timeout
 import asyncio
 import functools
 import itertools
+from asyncio import sleep
+import math
 
 Bot = commands.Bot(command_prefix=',')
 

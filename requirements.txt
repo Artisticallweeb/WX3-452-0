@@ -1,0 +1,4 @@
+discord.py
+async-timeout
+praw
+youtube_dl
