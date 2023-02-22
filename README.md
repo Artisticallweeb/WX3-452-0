@@ -1,4 +1,4 @@
-# WX3-452-0 Discord bot
+# WX3-4 Discord bot
 Once a discord bot that can play music
 
 # Requirements
@@ -6,4 +6,5 @@ Once a discord bot that can play music
 - praw
 - youtubedl
 - async-timeout
+- python-dotenv
 

@@ -1,17 +1,18 @@
 import discord
 import praw
-from discord.ext import commands
 import random
-from keep_alive import keep_alive
 import youtube_dl
-from async_timeout import timeout
 import asyncio
 import functools
 import itertools
-from asyncio import sleep
 import math
 
-Bot = commands.Bot(command_prefix=',')
+from discord.ext import commands
+from asyncio import sleep
+from utils.constants import BOT_TOKEN, BOT_PREFIX
+from async_timeout import timeout
+
+Bot = commands.Bot(command_prefix=BOT_PREFIX)
 
 @Bot.command(aliases=['8ball'])
 async def _8ball(ctx,):
@@ -643,7 +644,4 @@ class Music(commands.Cog):
 
 Bot.add_cog(Music(Bot))
 
-
-
-keep_alive()
 Bot.run(BOT_TOKEN)
