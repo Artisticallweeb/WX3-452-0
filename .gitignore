@@ -1,3 +1,1 @@
-env 
-.replit
-keep_alive.py
+**.env
