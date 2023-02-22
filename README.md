@@ -1,5 +1,5 @@
 # WX3-4 Discord bot
-Once a discord bot that can play music
+Once a discord bot multifunctional
 
 # Requirements
 - discord.py 1.7.3

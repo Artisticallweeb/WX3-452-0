@@ -1,5 +1,6 @@
 import discord
 import praw
+import os
 import random
 import youtube_dl
 import asyncio
@@ -12,106 +13,33 @@ from asyncio import sleep
 from utils.constants import BOT_TOKEN, BOT_PREFIX
 from async_timeout import timeout
 
-Bot = commands.Bot(command_prefix=BOT_PREFIX)
+Bot = commands.Bot(
+    command_prefix=BOT_PREFIX,
+    intents=discord.Intents.all(),
+    case_insensitive=True
+)
 
-@Bot.command(aliases=['8ball'])
-async def _8ball(ctx,):
-    responses = ["Yes", "No", "Yes, if Tacoman wills it", "No... I mean yes... Well... Ask again later", "The answer is unclear... Seriously I double checked", "I won't answer that, but scotticus will", "It's a coin flip really...", "Yes, he will... Sorry I was't really listening", "I could tell you but I'd have to permanently ban you", "Yes, No, Maybe... I don't know, could you repeat the question?", "If you think I'm answering that, you're clearly mistaking me for idiot.", "Do you REALLY want me to answer that? OK... Maybe ", "YesNoYesNoYesNoYesNoYesNo ", "Ask yourself this question in the mirror three times, the answer will become clear ", "You want an answer? OK, here's your answer: NO", "gay", "https://c.tenor.com/5-yxqQEbeqMAAAAM/jojo-anime.gif", "https://c.tenor.com/9TAeo9ON19YAAAAM/no-jojo.gif", "yeah idc", "ask yourself", "damn, ok", "ask <@752389287391002674>"]
-    await ctx.send(f'{random.choice(responses)}')
+# Load all python modules from the cogs directory
+for filename in os.listdir("./cogs"):
+    if filename.endswith(".py"):
+        Bot.load_extension(f"cogs.{filename[:-3]}")
 
-@Bot.command()
-async def pun(ctx):
-    responses = ["Light travels faster than sound. That's why some people appear bright until you hear them speak",
-    "I have a few jokes about unemployed people, but none of them work",
-    "When life gives you melons, you're dyslexic",
-    "Last night, I dreamed I was swimming in an ocean of orange soda. But it was just a Fanta sea",
-    "I lost my job at the bank on my very first day. A woman asked me to check her balance, so I pushed her over",
-    "It's hard to explain puns to kleptomaniacs because they always take things literally",
-    "Two windmills are standing in a wind farm. One asks, “What’s your favorite kind of music?” The other says, “I’m a big metal fan.”",
-    "Did you hear about the guy whose whole left side was cut off? He’s all right now",
-    "I can’t believe I got fired from the calendar factory. All I did was take a day off",
-    "The man who survived pepper spray and mustard gas is now a seasoned veteran",
-    "My dad farted in an elevator, it was wrong on so many levels",
-    "What do you call a bee that can’t make up its mind? A maybe",
-    "England doesn't have a kidney bank, but it does have a Liverpool"]
-    await ctx.send(f'{random.choice(responses)}')
-
+# Initialize the bot
 @Bot.event
 async def on_ready():
   print('bot is ready')
   await Bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="👀"))
 
 
-@Bot.command()
-async def help1(ctx):
-    embed = discord.Embed(title="Help Commands", color=0x008000)
-    embed.add_field(name="meme")
-    await ctx.send(embed=embed)
 
 
-reddit = praw.Reddit(client_id='Xx7RppR-YDqG9Q',
-                     client_secret='i_wAemxl1gUvEDl5jLW1pOm4-w8',
-                     user_agent='bot.py')
 
 
-@Bot.command(aliases=["memes"])
-async def meme(ctx):
-    memes_submissions = reddit.subreddit("dankmemes").new()
-    post_to_pick = random.randint(1, 100)
-    for i in range(0, post_to_pick):
-        submission = memes_submissions.__next__()
-
-    embed = discord.Embed(title='you found MEMES!!', color=0xff00ea)
-    embed.set_image(url=submission.url)
-    embed.add_field(
-        name="View Online",
-        value=f"[Link]({submission.url})",
-    )
-    embed.add_field(
-        name="Subreddit",
-        value="r/memes",
-    )
-    await ctx.send(embed=embed)
 
 
-@Bot.command(aliases=["cat","kitty"])
-async def cats(ctx):
-    memes_submissions = reddit.subreddit("catpictures").new()
-    post_to_pick = random.randint(1, 100)
-    for i in range(0, post_to_pick):
-        submission = memes_submissions.__next__()
-
-    embed = discord.Embed(title='you found CATS!! awwwwww', color=0xff00ea)
-    embed.set_image(url=submission.url)
-    embed.add_field(
-        name="View Online",
-        value=f"[Link]({submission.url})",
-    )
-    embed.add_field(
-        name="Subreddit",
-        value="r/cats",
-    )
-    await ctx.send(embed=embed)
 
 
-@Bot.command(aliases=["dogs","doggos"])
-async def dog(ctx):
-    memes_submissions = reddit.subreddit("dogpictures").new()
-    post_to_pick = random.randint(1, 100)
-    for i in range(0, post_to_pick):
-        submission = memes_submissions.__next__()
 
-    embed = discord.Embed(title='you found DOGGOS!!', color=0xff00ea)
-    embed.set_image(url=submission.url)
-    embed.add_field(
-        name="View Online",
-        value=f"[Link]({submission.url})",
-    )
-    embed.add_field(
-        name="Subreddit",
-        value="r/dogs",
-    )
-    await ctx.send(embed=embed)
 
 
 
