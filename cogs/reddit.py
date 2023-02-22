@@ -5,14 +5,14 @@ import random
 
 from discord.ext import commands
 
+# Initialize the reddit instance
+reddit = praw.Reddit(client_id='Xx7RppR-YDqG9Q',
+                    client_secret='i_wAemxl1gUvEDl5jLW1pOm4-w8',
+                        ser_agent='bot.py')
+
 class reddit(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
-    # Initialize the reddit instance
-    reddit = praw.Reddit(client_id='Xx7RppR-YDqG9Q',
-                        client_secret='i_wAemxl1gUvEDl5jLW1pOm4-w8',
-                        user_agent='bot.py')
     
     # Random meme command 
     @commands.command(aliases=["memes"])
@@ -72,13 +72,6 @@ class reddit(commands.Cog):
             value="r/dogs",
         )
         await ctx.send(embed=embed)
-
-
-    
-
-    
-
-
 
 
 def setup(bot):

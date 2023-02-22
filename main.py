@@ -30,67 +30,6 @@ async def on_ready():
   print('bot is ready')
   await Bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="👀"))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-snipe_message_author = {}
-snipe_message_content = {}
-
-@Bot.event
-async def on_message_delete(message):
-     snipe_message_author[message.channel.id] = message.author
-     snipe_message_content[message.channel.id] = message.content
-     await sleep(60)
-     del snipe_message_author[message.channel.id]
-     del snipe_message_content[message.channel.id]
-
-@Bot.command(name = 'snipe')
-async def snipe(ctx):
-    channel = ctx.channel
-    try: #This piece of code is run if the bot finds anything in the dictionary
-        em = discord.Embed(name = f"Last deleted message in #{channel.name}", description = snipe_message_content[channel.id])
-        em.set_footer(text = f"This message was sent by {snipe_message_author[channel.id]}")
-        await ctx.send(embed = em)
-    except: #This piece of code is run if the bot doesn't find anything in the dictionary
-        await ctx.send(f"There are no recently deleted messages in #{channel.name}")
-
-@Bot.command(aliases=["sd","speak"])
-async def say(ctx, *, question):
-    await ctx.message.delete()
-    await ctx.send(f'{question}')
-
-@Bot.command()
-async def about(ctx):
-  embed = discord.Embed(name = "about")
-  embed = embed.add_field(name = "hello" ,value = "i'm a bot that is always watching")
-  await ctx.send(embed = embed)
-
-@Bot.command()
-async def f(ctx):
-  embed = discord.Embed(name = "F",description = " ")
-  embed = embed.add_url(url = "https://media.giphy.com/media/26gR1v0rIDrjSsca4/giphy.gif")
-  await ctx.send(embed = embed)
-
-@Bot.command()
-async def ping(ctx):
-    await ctx.send(f'pong!{round(Bot.latency * 1000)}ms')
-
-@Bot.command(aliases = ["roll"])
-async def rolldice(self, ctx):
-   """Roll some die"""
-   await ctx.send("You rolled a {}!".format(random.randint(1, 6)))
-
-
 # Silence useless bug reports messages
 youtube_dl.utils.bug_reports_message = lambda: ''
 

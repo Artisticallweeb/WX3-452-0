@@ -35,6 +35,32 @@ class general(commands.Cog):
         "What do you call a bee that can’t make up its mind? A maybe",
         "England doesn't have a kidney bank, but it does have a Liverpool"]
         await ctx.reply(f'{random.choice(responses)}')
+    
+    @commands.command(aliases=["sd","speak"])
+    async def say(self, ctx, *, question):
+        await ctx.message.delete()
+        await ctx.send(f'{question}')
+
+    @commands.command()
+    async def about(self, ctx):
+        embed = discord.Embed(name = "about")
+        embed = embed.add_field(name = "hello" ,value = "i'm a bot that is always watching")
+        await ctx.send(embed = embed)
+
+    @commands.command()
+    async def f(self, ctx):
+        embed = discord.Embed(name = "F",description = " ")
+        embed = embed.add_url(url = "https://media.giphy.com/media/26gR1v0rIDrjSsca4/giphy.gif")
+        await ctx.send(embed = embed)
+
+    @commands.command()
+    async def ping(self, ctx):
+        await ctx.send(f'pong!{round(self.bot.latency * 1000)}ms')
+
+    @commands.command(aliases = ["roll"])
+    async def rolldice(self, ctx):
+        """Roll some die"""
+        await ctx.send("You rolled a {}!".format(random.randint(1, 6)))
 
 def setup(bot):
     bot.add_cog(general(bot))
