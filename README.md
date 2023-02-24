@@ -2,12 +2,12 @@
 Multifunctional discord bot including music, reddit, and moderation commands. 
 
 ## Roadmap
-- [] Fully functional Music commands
-- [] Moderation commands
-- [] Core functionality
-- [] Startup script
-- [] Error handling
-- [] Working Help command
+- [ ] Fully functional Music commands
+- [ ] Moderation commands
+- [ ] Core functionality
+- [ ] Startup script
+- [ ] Error handling
+- [ ] Working Help command
 
 ## Requirements
 - Python 3.8 or later
