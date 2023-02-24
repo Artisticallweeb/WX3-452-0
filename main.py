@@ -1,5 +1,4 @@
 import discord
-import praw
 import os
 import random
 import youtube_dl
@@ -9,7 +8,6 @@ import itertools
 import math
 
 from discord.ext import commands
-from asyncio import sleep
 from utils.constants import BOT_TOKEN, BOT_PREFIX
 from async_timeout import timeout
 
