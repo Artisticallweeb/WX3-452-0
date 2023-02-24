@@ -1,5 +1,13 @@
 # WX3-4 Discord bot
-Multifunctional discord bot in development. Soon to be officially released.
+Multifunctional discord bot including music, reddit, and moderation commands. 
+
+## Roadmap
+- [] Fully functional Music commands
+- [] Moderation commands
+- [] Core functionality
+- [] Startup script
+- [] Error handling
+- [] Working Help command
 
 ## Requirements
 - Python 3.8 or later
@@ -11,4 +19,5 @@ Multifunctional discord bot in development. Soon to be officially released.
 
 ## How to run
 1. `pip install -r requirements.txt`
-2. `py main.py`
+2. Rename `.env.example` to `.env` and paste Bot Token
+3. `py main.py`
