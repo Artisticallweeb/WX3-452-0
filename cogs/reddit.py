@@ -1,5 +1,4 @@
 import discord
-import os 
 import praw
 import random
 
