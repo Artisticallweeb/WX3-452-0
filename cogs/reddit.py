@@ -4,11 +4,12 @@ import praw
 import random
 
 from discord.ext import commands
+from utils.constants import REDDIT_CLIENT, REDDIT_SECRET
 
 # Initialize the reddit instance
-reddit = praw.Reddit(client_id='Xx7RppR-YDqG9Q',
-                    client_secret='i_wAemxl1gUvEDl5jLW1pOm4-w8',
-                        ser_agent='bot.py')
+reddit = praw.Reddit(client_id=REDDIT_CLIENT,
+                     client_secret=REDDIT_SECRET,
+                     ser_agent='bot')
 
 class reddit(commands.Cog):
     def __init__(self, bot):
