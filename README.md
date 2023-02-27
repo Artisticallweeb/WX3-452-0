@@ -8,6 +8,7 @@ Multifunctional discord bot including music, reddit, and moderation commands.
 - [ ] Startup script
 - [ ] Error handling
 - [ ] Working Help command
+- [x] Reddit integrations
 
 ## Requirements
 - Python 3.8 or later
