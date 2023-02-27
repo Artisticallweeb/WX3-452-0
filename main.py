@@ -25,7 +25,7 @@ for filename in os.listdir("./cogs"):
 # Initialize the bot
 @Bot.event
 async def on_ready():
-  print('bot is ready')
+  print('BOT IS RUNNING!')
   await Bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="👀"))
 
 # Silence useless bug reports messages

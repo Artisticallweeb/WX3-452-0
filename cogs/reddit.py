@@ -44,13 +44,25 @@ class reddit(commands.Cog):
     # Random cats command
     @commands.command(aliases=["cat","kitty"])
     async def cats(self, ctx):
-        memes_submissions = reddit.subreddit("catpictures").new()
-        post_to_pick = random.randint(1, 100)
-        for i in range(0, post_to_pick):
-            submission = memes_submissions.__next__()
+        # Initialize the reddit instance
+        reddit = asyncpraw.Reddit(client_id=REDDIT_CLIENT,
+                            client_secret=REDDIT_SECRET,
+                            user_agent='bot')
 
-        embed = discord.Embed(title='you found CATS!! awwwwww', color=0xff00ea)
-        embed.set_image(url=submission.url)
+        # Reddit API Calls
+        subreddit = await reddit.subreddit("catpictures")
+        all_subs = []
+        top = subreddit.top(limit=35)
+        async for submission in top:
+            all_subs.append(submission)
+
+        random_sub = random.choice(all_subs)
+        name = random_sub.title
+        url = random_sub.url
+
+        # Embed Create
+        embed = discord.Embed(title=name, color=0xff00ea)
+        embed.set_image(url=url)
         embed.add_field(
             name="View Online",
             value=f"[Link]({submission.url})",
@@ -61,15 +73,28 @@ class reddit(commands.Cog):
         )
         await ctx.send(embed=embed)
 
+    # Random dogs command
     @commands.command(aliases=["dogs","doggos"])
     async def dog(self, ctx):
-        memes_submissions = reddit.subreddit("dogpictures").new()
-        post_to_pick = random.randint(1, 100)
-        for i in range(0, post_to_pick):
-            submission = memes_submissions.__next__()
+        # Initialize the reddit instance
+        reddit = asyncpraw.Reddit(client_id=REDDIT_CLIENT,
+                            client_secret=REDDIT_SECRET,
+                            user_agent='bot')
 
-        embed = discord.Embed(title='you found DOGGOS!!', color=0xff00ea)
-        embed.set_image(url=submission.url)
+        # Reddit API Calls
+        subreddit = await reddit.subreddit("memes")
+        all_subs = []
+        top = subreddit.top(limit=35)
+        async for submission in top:
+            all_subs.append(submission)
+
+        random_sub = random.choice(all_subs)
+        name = random_sub.title
+        url = random_sub.url
+
+        # Embed Create
+        embed = discord.Embed(title=name, color=0xff00ea)
+        embed.set_image(url=url)
         embed.add_field(
             name="View Online",
             value=f"[Link]({submission.url})",
