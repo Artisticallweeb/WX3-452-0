@@ -1,5 +1,5 @@
-discord.py==1.7.3
+discord.py[voice]==1.7.3
 async-timeout
 asyncpraw
-youtube_dl
 python-dotenv
+lavalink
