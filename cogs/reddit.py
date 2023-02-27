@@ -8,7 +8,7 @@ from utils.constants import REDDIT_CLIENT, REDDIT_SECRET
 # Initialize the reddit instance
 reddit = asyncpraw.Reddit(client_id=REDDIT_CLIENT,
                      client_secret=REDDIT_SECRET,
-                     ser_agent='bot')
+                     user_agent='bot')
 
 class reddit(commands.Cog):
     def __init__(self, bot):
